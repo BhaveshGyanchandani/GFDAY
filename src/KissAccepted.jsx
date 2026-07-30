@@ -5,6 +5,7 @@ import GifFrame from "./GifFrame";
 import VoiceRecorder from "./VoiceRecorder";
 import Modal from "./Modal";
 
+
 function KissAccepted() {
   const [showModal, setShowModal] = useState(false);
 
@@ -13,7 +14,7 @@ function KissAccepted() {
       <FloatingHearts count={24} />
 
       <div className="card kiss-card">
-        <GifFrame src="/assets/kiss-accepted.gif" alt="celebratory kiss" />
+        <GifFrame src="/assets/no_1.gif" alt="celebratory kiss" />
 
         <p className="accepted-text">
           I love you my Nuu ♥️<br />

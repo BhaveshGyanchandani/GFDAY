@@ -5,6 +5,7 @@ import GifFrame from "./GifFrame";
 import VoiceRecorder from "./VoiceRecorder";
 import Modal from "./Modal";
 
+
 function Kiss() {
   const navigate = useNavigate();
   const [modal, setModal] = useState(null); // "yes" | "no" | null
@@ -14,7 +15,7 @@ function Kiss() {
       <FloatingHearts count={14} />
 
       <div className="card kiss-card">
-        <GifFrame src="/assets/kiss-ask.gif" alt="asking for a kiss" />
+        <GifFrame src="/assets/kiss.gif" alt="asking for a kiss" />
 
         <h2 className="card-title">give a kiss to your lovely boyfie 😘</h2>
 

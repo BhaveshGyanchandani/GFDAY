@@ -5,13 +5,14 @@ import GifFrame from "./GifFrame";
 import VoiceRecorder from "./VoiceRecorder";
 import Modal from "./Modal";
 
+
 const STAGES = [
-  { gif: "/assets/no-1.gif", title: "u dont want to give your adorable boyfie a sweet kiss 🥲" },
-  { gif: "/assets/no-2.gif", title: "Please Nuu give a kiss naa pleasee 🥺" },
-  { gif: "/assets/no-3.gif", title: "pretty pretty please? 🥺👉👈" },
-  { gif: "/assets/no-4.gif", title: "i'll be soooo sad without it 😢" },
-  { gif: "/assets/no-5.gif", title: "just one itty bitty kiss? pleeeease 🥹" },
-  { gif: "/assets/no-6.gif", title: "okay last try... pleeeeease say yes 💗" },
+  { gif: "/assets/no_1.gif", title: "u dont want to give your adorable boyfie a sweet kiss 🥲" },
+  { gif: "/assets/no_2.gif", title: "Please Nuu give a kiss naa pleasee 🥺" },
+  { gif: "/assets/no_3.gif", title: "pretty pretty please? 🥺👉👈" },
+  { gif: "/assets/no_4.gif", title: "i'll be soooo sad without it 😢" },
+  { gif: "/assets/no_5.gif", title: "just one itty bitty kiss? pleeeease 🥹" },
+  { gif: "/assets/no_6.gif", title: "okay last try... pleeeeease say yes 💗" },
 ];
 
 function KissDecline() {
