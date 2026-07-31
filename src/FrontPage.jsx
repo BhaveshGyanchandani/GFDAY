@@ -86,6 +86,15 @@ function FrontPage() {
             <span className="front-btn-icon">😘</span>
             <span className="front-btn-label">give a kiss</span>
           </button>
+
+          <button
+            id="photobouquet-btn-home"
+            className="front-feature-btn"
+            onClick={() => navigate("/photobouquet")}
+          >
+            <span className="front-btn-icon">💎</span>
+            <span className="front-btn-label">photo bouquet</span>
+          </button>
         </div>
       </div>
     </div>

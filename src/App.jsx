@@ -13,6 +13,7 @@ import GuessGame from "./GuessGame";
 import LoveSlides from "./LoveSlides";
 import FlowerSlideshow from "./FlowerSlideshow";
 import SpecialBouquet from "./SpecialBouquet";
+import LuxuryPhotoBouquet from "./LuxuryPhotoBouquet";
 import "./App.css";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/bouquet/special" element={<SpecialBouquet />} />
         <Route path="/guess" element={<GuessGame />} />
         <Route path="/love" element={<LoveSlides />} />
+        <Route path="/photobouquet" element={<LuxuryPhotoBouquet />} />
       </Routes>
     </BrowserRouter>
   );
