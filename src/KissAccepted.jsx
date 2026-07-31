@@ -32,10 +32,18 @@ function KissAccepted() {
           >
             💌 a special note for you
           </button>
-          <Link id="bouquet-btn" className="choice-btn yes-btn bouquet-btn" to="/bouquet">
+          <Link
+            id="bouquet-btn"
+            className="choice-btn yes-btn"
+            to="/bouquet"
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center" }}
+          >
             💐 one more thing for you →
           </Link>
-          <Link className="back-btn" to="/">
+          <Link
+            className="back-btn"
+            to="/"
+          >
             ← back to the start
           </Link>
         </div>

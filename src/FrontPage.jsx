@@ -9,7 +9,6 @@ function FrontPage() {
   const handleOpen = () => {
     if (opening) return;
     setOpening(true);
-    // let the little "open" animation play before navigating to the letter
     setTimeout(() => navigate("/letter"), 650);
   };
 
@@ -18,10 +17,11 @@ function FrontPage() {
       <FloatingHearts count={22} />
 
       <div className="front-content">
-        <p className="eyebrow">❀ a little envelope for you ❀</p>
+        <p className="eyebrow">❀ a little something for you ❀</p>
         <h1 className="main-title">Happy Girlfriend's Day</h1>
-        <p className="subtitle">there's something waiting inside...</p>
+        <p className="subtitle">there's so much waiting inside...</p>
 
+        {/* ── envelope ── */}
         <div
           className={`envelope ${opening ? "envelope-open" : ""}`}
           onClick={handleOpen}
@@ -47,7 +47,46 @@ function FrontPage() {
           </div>
         </div>
 
-        <p className="hint">tap the envelope to open it</p>
+        <p className="hint">tap the envelope to open it 💌</p>
+
+        {/* ── feature buttons grid ── */}
+        <div className="front-btns">
+          <button
+            id="love-slides-btn"
+            className="front-feature-btn"
+            onClick={() => navigate("/love")}
+          >
+            <span className="front-btn-icon">💕</span>
+            <span className="front-btn-label">love notes</span>
+          </button>
+
+          <button
+            id="guess-game-btn"
+            className="front-feature-btn"
+            onClick={() => navigate("/guess")}
+          >
+            <span className="front-btn-icon">🎮</span>
+            <span className="front-btn-label">play a game</span>
+          </button>
+
+          <button
+            id="bouquet-btn-home"
+            className="front-feature-btn"
+            onClick={() => navigate("/bouquet")}
+          >
+            <span className="front-btn-icon">💐</span>
+            <span className="front-btn-label">build bouquet</span>
+          </button>
+
+          <button
+            id="kiss-btn-home"
+            className="front-feature-btn"
+            onClick={() => navigate("/kiss")}
+          >
+            <span className="front-btn-icon">😘</span>
+            <span className="front-btn-label">give a kiss</span>
+          </button>
+        </div>
       </div>
     </div>
   );

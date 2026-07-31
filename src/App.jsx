@@ -9,6 +9,8 @@ import KissDecline from "./KissDecline";
 import KissAccepted from "./KissAccepted";
 import Bouquet from "./Bouquet";
 import BouquetResult from "./BouquetResult";
+import GuessGame from "./GuessGame";
+import LoveSlides from "./LoveSlides";
 import "./App.css";
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path="/kiss/accepted" element={<KissAccepted />} />
         <Route path="/bouquet" element={<Bouquet />} />
         <Route path="/bouquet/result" element={<BouquetResult />} />
+        <Route path="/guess" element={<GuessGame />} />
+        <Route path="/love" element={<LoveSlides />} />
       </Routes>
     </BrowserRouter>
   );
