@@ -1,9 +1,5 @@
-// ✏️ This is the whole game's content in one place.
-// Swap every image path for your own files in /public/assets/guess/,
-// and edit any label or reveal text you want — the page just reads this list.
-//
-// Note: I read "t2: change" as the MLBB hero "Chang'e" — rename it below
-// if that's not what you meant.
+// Game rounds for "Play a Game" — guess who's the best!
+// Each reveal.image now points to the real photo in /assets/guess/
 
 const HERO_ROUNDS = [
   {
@@ -11,7 +7,7 @@ const HERO_ROUNDS = [
     optionA: { label: "Nana", image: "/assets/guess/nana.jpg" },
     optionB: { label: "Chang'e", image: "/assets/guess/change.jpg" },
     reveal: {
-      image: "/assets/guess/reveal-cuter.jpg",
+      image: "/assets/guess/cutest.jpg",
       text: "Naaaah !!!!! Absolutely wrong , My Nuu is most cutest of them All.",
     },
   },
@@ -20,7 +16,7 @@ const HERO_ROUNDS = [
     optionA: { label: "Kagura", image: "/assets/guess/kagura.jpg" },
     optionB: { label: "Guinevere", image: "/assets/guess/guinevere.jpg" },
     reveal: {
-      image: "/assets/guess/reveal-pretty.jpg",
+      image: "/assets/guess/prettiest.jpg",
       text: "Nuh-uh! Wrong answer, my Nuu is the prettiest one there ever was.",
     },
   },
@@ -29,7 +25,7 @@ const HERO_ROUNDS = [
     optionA: { label: "Lunox", image: "/assets/guess/lunox.jpg" },
     optionB: { label: "Odette", image: "/assets/guess/odette.jpg" },
     reveal: {
-      image: "/assets/guess/reveal-beautiful.jpg",
+      image: "/assets/guess/beautiful.jpg",
       text: "Nope! Try again, my Nuu is the most beautiful, hands down.",
     },
   },
@@ -38,7 +34,7 @@ const HERO_ROUNDS = [
     optionA: { label: "Carmillia", image: "/assets/guess/carmillia.jpg" },
     optionB: { label: "Zetian", image: "/assets/guess/zetian.jpg" },
     reveal: {
-      image: "/assets/guess/reveal-gorgeous.jpg",
+      image: "/assets/guess/gorgeous.jpeg",
       text: "Wrongggg! My Nuu is the most gorgeous, no contest at all.",
     },
   },
@@ -47,7 +43,7 @@ const HERO_ROUNDS = [
     optionA: { label: "Rafaela", image: "/assets/guess/rafaela.jpg" },
     optionB: { label: "Floryn", image: "/assets/guess/floryn.jpg" },
     reveal: {
-      image: "/assets/guess/reveal-caring.jpg",
+      image: "/assets/guess/caring.jpg",
       text: "Nuuuh-uh! Nobody cares like my Nuu does.",
     },
   },
@@ -56,7 +52,7 @@ const HERO_ROUNDS = [
     optionA: { label: "Angela", image: "/assets/guess/angela.jpg" },
     optionB: { label: "Mathilda", image: "/assets/guess/mathilda.jpg" },
     reveal: {
-      image: "/assets/guess/reveal-supporter.jpg",
+      image: "/assets/guess/supporter.jpg",
       text: "Incorrect! My Nuu is the realest MVP supporter of them all.",
     },
   },
@@ -65,7 +61,7 @@ const HERO_ROUNDS = [
     optionA: { label: "Selena", image: "/assets/guess/selena.jpg" },
     optionB: { label: "Alice", image: "/assets/guess/alice.jpg" },
     reveal: {
-      image: "/assets/guess/reveal-baddie.jpg",
+      image: "/assets/guess/baddie.jpg",
       text: "Nooo way! My Nuu is the ultimate baddie, period.",
     },
   },
@@ -74,7 +70,7 @@ const HERO_ROUNDS = [
     optionA: { label: "Miya", image: "/assets/guess/miya.jpg" },
     optionB: { label: "Layla", image: "/assets/guess/layla.jpg" },
     reveal: {
-      image: "/assets/guess/reveal-sweetest.jpg",
+      image: "/assets/guess/sweetest.jpeg",
       text: "Wrong again! My Nuu is the sweetest soul I know.",
     },
   },

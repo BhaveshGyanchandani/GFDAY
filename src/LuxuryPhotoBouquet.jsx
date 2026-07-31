@@ -29,9 +29,10 @@ function mulberry(seed) {
 const RNG = mulberry(20260731);
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ALL 14 MyFlowers REAL IMAGES — every one used exactly once as a photo bloom
+// 20 images: all 14 MyFlowers + 6 Nuu portraits for the extra blooms
 // ─────────────────────────────────────────────────────────────────────────────
 const PHOTO_SRCS = [
+  // ── 14 flower photos ──
   "/assets/MyFlowers/red_rose.jpg",
   "/assets/MyFlowers/rose.jpg",
   "/assets/MyFlowers/pink_rose.jpg",
@@ -46,35 +47,49 @@ const PHOTO_SRCS = [
   "/assets/MyFlowers/redd.jpg",
   "/assets/MyFlowers/white.jpg",
   "/assets/MyFlowers/black.jpg",
+  // ── 6 Nuu portraits — fill the extra bloom spots ──
+  "/assets/Nuu/eyes.jpg",
+  "/assets/Nuu/smile.png",
+  "/assets/Nuu/hair.jpg",
+  "/assets/Nuu/lips.jpeg",
+  "/assets/Nuu/cheeks.jpg",
+  "/assets/Nuu/collarbone.jpeg",
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PHOTO BLOOM LAYOUT — 14 positions across 5 dome rings, evenly spread.
-// Images cycle: PHOTO_SRCS[idx % PHOTO_SRCS.length]
+// PHOTO BLOOM LAYOUT — 20 positions spread across the whole bouquet dome.
 // x/y = fraction of canvas (W=1400, H=920) | r = radius px | rot = tilt° | z = paint order
 // ─────────────────────────────────────────────────────────────────────────────
 const BLOOMS = [
-  // ── Ring 0: Crown (3) — tight top cluster ─────────────────────────────────
-  { x: 0.430, y: 0.060, r: 68, rot:  6, z: 24 },
-  { x: 0.500, y: 0.038, r: 76, rot: -2, z: 30 },  // center crown focal
-  { x: 0.570, y: 0.060, r: 66, rot: -7, z: 24 },
+  // ── Ring 0: Crown (3) ─────────────────────────────────────────────────────
+  { x: 0.430, y: 0.055, r: 66, rot:  6, z: 24 },
+  { x: 0.500, y: 0.032, r: 74, rot: -2, z: 30 },
+  { x: 0.570, y: 0.055, r: 64, rot: -7, z: 24 },
 
-  // ── Ring 1: Upper (3) — spread shoulders ──────────────────────────────────
-  { x: 0.300, y: 0.155, r: 66, rot: -9, z: 22 },
-  { x: 0.500, y: 0.165, r: 73, rot: -1, z: 28 },  // upper focal
-  { x: 0.700, y: 0.155, r: 65, rot: 10, z: 22 },
+  // ── Ring 1: Upper-wide (4) ────────────────────────────────────────────────
+  { x: 0.230, y: 0.130, r: 62, rot:-12, z: 20 },
+  { x: 0.390, y: 0.145, r: 68, rot: -4, z: 26 },
+  { x: 0.610, y: 0.145, r: 68, rot:  4, z: 26 },
+  { x: 0.770, y: 0.130, r: 62, rot: 12, z: 20 },
 
-  // ── Ring 2: Mid (4) — full dome width ─────────────────────────────────────
-  { x: 0.180, y: 0.290, r: 62, rot:-13, z: 18 },
-  { x: 0.400, y: 0.310, r: 70, rot: -4, z: 26 },
-  { x: 0.600, y: 0.310, r: 70, rot:  4, z: 26 },
-  { x: 0.820, y: 0.290, r: 60, rot: 14, z: 18 },
+  // ── Ring 2: Mid (5) ───────────────────────────────────────────────────────
+  { x: 0.100, y: 0.255, r: 58, rot:-16, z: 16 },
+  { x: 0.290, y: 0.275, r: 64, rot: -8, z: 22 },
+  { x: 0.500, y: 0.285, r: 72, rot:  0, z: 28 },
+  { x: 0.710, y: 0.275, r: 64, rot:  8, z: 22 },
+  { x: 0.900, y: 0.255, r: 58, rot: 16, z: 16 },
 
-  // ── Ring 3: Lower (4) — tapering toward wrap ──────────────────────────────
-  { x: 0.280, y: 0.450, r: 62, rot: 10, z: 20 },
-  { x: 0.430, y: 0.480, r: 65, rot: -5, z: 24 },
-  { x: 0.570, y: 0.480, r: 65, rot:  5, z: 24 },
-  { x: 0.720, y: 0.450, r: 62, rot: -9, z: 20 },
+  // ── Ring 3: Lower-mid (5) ─────────────────────────────────────────────────
+  { x: 0.155, y: 0.400, r: 60, rot:-14, z: 18 },
+  { x: 0.330, y: 0.425, r: 65, rot: -6, z: 24 },
+  { x: 0.500, y: 0.440, r: 70, rot:  0, z: 28 },
+  { x: 0.670, y: 0.425, r: 65, rot:  6, z: 24 },
+  { x: 0.845, y: 0.400, r: 60, rot: 14, z: 18 },
+
+  // ── Ring 4: Outer flanks (3) ──────────────────────────────────────────────
+  { x: 0.070, y: 0.160, r: 55, rot:-18, z: 14 },
+  { x: 0.500, y: 0.570, r: 62, rot:  2, z: 22 },
+  { x: 0.930, y: 0.160, r: 55, rot: 18, z: 14 },
 ];
 
 
@@ -118,7 +133,10 @@ function scallop(n, ro, ri) {
 
 const PETAL_COLORS = ["#F7C8D4", "#FBE0D8", "#F2AABF", "#FDEEF2", "#F9D5C2", "#F0B8C8"];
 
-function PhotoBloom({ src, r, petalIdx, onTap }) {
+// PhotoBloom — photo is shown by filling a circle with a <pattern> defined at
+// top-level SVG defs. Patterns resolve correctly regardless of any ancestor
+// transform or filter, unlike clipPath with userSpaceOnUse.
+function PhotoBloom({ patId, r, petalIdx, onTap }) {
   const scallopPath = useMemo(() => scallop(10, r * 1.32, r * 1.06), [r]);
   const petalFill = PETAL_COLORS[petalIdx % PETAL_COLORS.length];
 
@@ -145,24 +163,9 @@ function PhotoBloom({ src, r, petalIdx, onTap }) {
           />
         );
       })}
-      {/* peach placeholder disc shown while image loads */}
-      <circle r={r} fill="#F2DDD4" />
-      {/*
-        CSS clip-path: circle(50%) is the most reliable way to circularly
-        crop an SVG <image> — works inside translated/filtered groups,
-        needs no clipPath IDs, no foreignObject namespace handling.
-        Supported in Chrome 55+, Firefox 54+, Safari 13.1+.
-      */}
-      <image
-        href={src}
-        x={-r}
-        y={-r}
-        width={r * 2}
-        height={r * 2}
-        preserveAspectRatio="xMidYMid slice"
-        style={{ clipPath: "circle(50%)" }}
-      />
-      {/* inner white glow rim over photo edge */}
+      {/* photo circle — filled with top-level pattern, no clipPath needed */}
+      <circle r={r} fill={`url(#${patId})`} />
+      {/* inner white glow rim */}
       <circle r={r} fill="none" stroke="#fff" strokeWidth={2.5} strokeOpacity={0.55} />
       {/* gold border ring */}
       <circle r={r + 4} fill="none" stroke="url(#goldRing)" strokeWidth={1.5} opacity={0.55} />
@@ -683,17 +686,36 @@ export default function LuxuryPhotoBouquet() {
               <filter id="bloomGlow" x="-30%" y="-30%" width="160%" height="160%">
                 <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#C84060" floodOpacity="0.28" />
               </filter>
-              {/* ── Per-bloom circular clip paths — defined here at top level so they
-                   are always resolvable regardless of transform/filter context ── */}
-              {BLOOMS.map((b, i) => (
-                <clipPath key={i} id={`ph-bloom-${i}`} clipPathUnits="userSpaceOnUse">
-                  <circle
-                    cx={px(b.x)}
-                    cy={py(b.y)}
-                    r={b.r}
-                  />
-                </clipPath>
-              ))}
+              {/* ── Per-bloom image patterns ──
+                   patternUnits="userSpaceOnUse" coordinates are resolved in
+                   the LOCAL space of the referencing element (after its
+                   transform). The bloom circle sits at local origin (0,0),
+                   so the pattern tile must be x=-r, y=-r, w=2r, h=2r.
+                   DO NOT use canvas px()/py() coords here — those are the
+                   parent (canvas) space, not the local translated space. */}
+              {BLOOMS.map((b, i) => {
+                const d = b.r * 2;
+                return (
+                  <pattern
+                    key={i}
+                    id={`bp-${i}`}
+                    patternUnits="userSpaceOnUse"
+                    x={-b.r}
+                    y={-b.r}
+                    width={d}
+                    height={d}
+                  >
+                    <image
+                      href={PHOTO_SRCS[i % PHOTO_SRCS.length]}
+                      x={0}
+                      y={0}
+                      width={d}
+                      height={d}
+                      preserveAspectRatio="xMidYMid slice"
+                    />
+                  </pattern>
+                );
+              })}
             </defs>
 
             {/* ── CANOPY SWAY WRAPPER ── */}
@@ -750,11 +772,11 @@ export default function LuxuryPhotoBouquet() {
                 </g>
               ))}
 
-              {/* ── ALL PHOTO BLOOMS — single z-sorted pass, cycles through 16 images ── */}
+              {/* ── ALL PHOTO BLOOMS ── */}
               {[...BLOOMS]
                 .map((b, i) => ({ ...b, idx: i }))
                 .sort((a, b) => a.z - b.z)
-                .map(({ idx, x, y, r, rot, z }) => (
+                .map(({ idx, x, y, r, rot }) => (
                   <g
                     key={idx}
                     transform={`translate(${px(x)} ${py(y)}) rotate(${rot})`}
@@ -763,7 +785,7 @@ export default function LuxuryPhotoBouquet() {
                     style={{ animationDelay: `${idx * 38}ms` }}
                   >
                     <PhotoBloom
-                      src={PHOTO_SRCS[idx % PHOTO_SRCS.length]}
+                      patId={`bp-${idx}`}
                       r={r}
                       petalIdx={idx}
                       onTap={() => setActiveIdx(idx)}
