@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import FloatingHearts from "./FloatingHearts";
 import FLOWERS from "./flowers";
+import Modal from "./Modal";
 
 // This generates a real, one-of-a-kind bouquet photo from her chosen flowers
 // using Pollinations.ai's free image API — no signup, no API key, no backend.
@@ -57,6 +58,7 @@ const buildImageUrl = (prompt, seed) => {
 
 function BouquetResult() {
   const location = useLocation();
+  const navigate = useNavigate();
   const selectedIds = location.state?.selected || [];
   const selectedFlowers = FLOWERS.filter((f) => selectedIds.includes(f.id));
 
@@ -64,6 +66,7 @@ function BouquetResult() {
   const [status, setStatus] = useState("loading"); // "loading" | "loaded" | "error"
   const [attempt, setAttempt] = useState(0); // bumps to force the <img> to refetch
   const [cooldown, setCooldown] = useState(0); // seconds left before you can regenerate again
+  const [showPeekModal, setShowPeekModal] = useState(false);
 
   const prompt = useMemo(() => buildBouquetPrompt(selectedFlowers), [selectedFlowers]);
   const imageUrl = useMemo(() => buildImageUrl(prompt, seed), [prompt, seed]);
@@ -237,7 +240,21 @@ function BouquetResult() {
           made just for you, with {selectedFlowers.map((f) => f.label).join(", ")}
         </p>
 
-        <div className="choice-row">
+        {/* ── Go ahead take a look button ── */}
+        {status === "loaded" && (
+          <button
+            id="bouquet-peek-btn"
+            className="choice-btn yes-btn"
+            style={{ marginBottom: 4, width: "100%" }}
+            onClick={() => setShowPeekModal(true)}
+            type="button"
+          >
+            go ahead, take a look 👀💐
+          </button>
+        )}
+
+
+        <div className="choice-row" style={{ marginTop: 4 }}>
           <Link className="choice-btn no-btn" to="/bouquet">
             ↻ rebuild
           </Link>
@@ -245,6 +262,31 @@ function BouquetResult() {
             back to start
           </Link>
         </div>
+
+        {/* ── Peek modal ── */}
+        <Modal isOpen={showPeekModal} onClose={() => setShowPeekModal(false)}>
+          <div className="modal-hearts" aria-hidden="true">💐 🌸 💐</div>
+          <h3 className="modal-title">oh wait... 🥺</h3>
+          <p className="modal-msg">
+            You just created the most beautiful bouquet!<br />
+            Wanna see <em>each flower</em> I picked just for you? 💕
+          </p>
+          <div className="modal-btn-row">
+            <button
+              id="peek-yes-btn"
+              className="choice-btn yes-btn"
+              onClick={() => navigate("/bouquet/slideshow", { state: { selected: selectedIds } })}
+            >
+              Yes, show me! 🌹
+            </button>
+            <button
+              className="choice-btn no-btn"
+              onClick={() => setShowPeekModal(false)}
+            >
+              maybe later 😊
+            </button>
+          </div>
+        </Modal>
       </div>
     </div>
   );

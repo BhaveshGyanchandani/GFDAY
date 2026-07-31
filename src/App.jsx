@@ -11,6 +11,8 @@ import Bouquet from "./Bouquet";
 import BouquetResult from "./BouquetResult";
 import GuessGame from "./GuessGame";
 import LoveSlides from "./LoveSlides";
+import FlowerSlideshow from "./FlowerSlideshow";
+import SpecialBouquet from "./SpecialBouquet";
 import "./App.css";
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
         <Route path="/kiss/accepted" element={<KissAccepted />} />
         <Route path="/bouquet" element={<Bouquet />} />
         <Route path="/bouquet/result" element={<BouquetResult />} />
+        <Route path="/bouquet/slideshow" element={<FlowerSlideshow />} />
+        <Route path="/bouquet/special" element={<SpecialBouquet />} />
         <Route path="/guess" element={<GuessGame />} />
         <Route path="/love" element={<LoveSlides />} />
       </Routes>
